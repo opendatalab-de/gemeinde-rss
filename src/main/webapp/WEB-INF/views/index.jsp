@@ -15,7 +15,7 @@
 		<div class="jumbotron">
 			<h1>Gemeinde RSS</h1>
 			<p>Alle Nachrichten aus deiner Gemeinde und Umgebung</p>
-
+			<small>Ein Projekt von <a href="http://opendatalab.de">OpenDataLab</a></small>
 		</div>
 
 		<table class="table table-striped">
@@ -38,6 +38,11 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		
+		<hr>
+		<div style="text-align:center;padding:10px">
+			Ein Projekt von <a href="http://opendatalab.de">OpenDataLab</a> | <a href="http://blog.opendatalab.de/imprint.html">Impressum</a>
+		</div>
 	</div>
 	<!-- JavaScript plugins (requires jQuery) -->
 	<!--  script src="http://code.jquery.com/jquery.js"></script -->
