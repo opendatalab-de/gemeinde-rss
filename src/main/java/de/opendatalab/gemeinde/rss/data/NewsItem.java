@@ -6,12 +6,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "gemeinde.rssfeed")
+@Document(collection = "gemeinde.newsitem")
 @TypeAlias("RssFeed")
-public class RssFeed {
+public class NewsItem {
 
 	@Id
-	private String rssFeedId;
+	private String newsItemId;
 	private String metaDataId;
 	private String title;
 	private String link;
@@ -20,12 +20,12 @@ public class RssFeed {
 	private String guid;
 	private Date pubDate;
 
-	public String getRssFeedId() {
-		return rssFeedId;
+	public String getNewsItemId() {
+		return newsItemId;
 	}
 
-	public void setRssFeedId(String rssFeedId) {
-		this.rssFeedId = rssFeedId;
+	public void setNewsItemId(String newsItemId) {
+		this.newsItemId = newsItemId;
 	}
 
 	public String getMetaDataId() {

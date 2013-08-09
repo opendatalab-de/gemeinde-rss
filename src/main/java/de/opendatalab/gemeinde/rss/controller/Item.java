@@ -1,13 +1,13 @@
 package de.opendatalab.gemeinde.rss.controller;
 
-import de.opendatalab.gemeinde.rss.data.RssFeed;
+import de.opendatalab.gemeinde.rss.data.NewsItem;
 
 public class Item implements Comparable<Item> {
 
 	private String gemeinde;
-	private RssFeed rssFeed;
+	private NewsItem rssFeed;
 
-	public Item(String gemeinde, RssFeed rssFeed) {
+	public Item(String gemeinde, NewsItem rssFeed) {
 		this.gemeinde = gemeinde;
 		this.rssFeed = rssFeed;
 	}
@@ -16,7 +16,7 @@ public class Item implements Comparable<Item> {
 		return gemeinde;
 	}
 
-	public RssFeed getRssFeed() {
+	public NewsItem getRssFeed() {
 		return rssFeed;
 	}
 
@@ -28,7 +28,7 @@ public class Item implements Comparable<Item> {
 			if (c == 0) {
 				c = rssFeed.getTitle().compareTo(o.rssFeed.getTitle());
 				if (c == 0) {
-					c = rssFeed.getRssFeedId().compareTo(o.rssFeed.getRssFeedId());
+					c = rssFeed.getNewsItemId().compareTo(o.rssFeed.getNewsItemId());
 				}
 			}
 		}

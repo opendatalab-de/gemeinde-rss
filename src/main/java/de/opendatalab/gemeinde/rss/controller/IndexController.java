@@ -14,8 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import de.opendatalab.gemeinde.rss.data.MetaData;
 import de.opendatalab.gemeinde.rss.data.MetaDataRepository;
-import de.opendatalab.gemeinde.rss.data.RssFeed;
-import de.opendatalab.gemeinde.rss.data.RssFeedRepository;
+import de.opendatalab.gemeinde.rss.data.NewsItem;
+import de.opendatalab.gemeinde.rss.data.NewsItemRepository;
 
 @Controller
 public class IndexController {
@@ -23,14 +23,14 @@ public class IndexController {
 	@Autowired
 	private MetaDataRepository metaDataRepository;
 	@Autowired
-	private RssFeedRepository rssFeedRepository;
+	private NewsItemRepository rssFeedRepository;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView get() {
 		Collection<Item> items = new TreeSet<>();
 		Map<String, MetaData> gemeindeMap = getGemeindeMap();
-		List<RssFeed> allItems = rssFeedRepository.findAll();
-		for (RssFeed rssFeed : allItems) {
+		List<NewsItem> allItems = rssFeedRepository.findAll();
+		for (NewsItem rssFeed : allItems) {
 			MetaData metaData = gemeindeMap.get(rssFeed.getMetaDataId());
 			System.out.println(rssFeed.getTitle());
 			items.add(new Item(metaData.getName(), rssFeed));
