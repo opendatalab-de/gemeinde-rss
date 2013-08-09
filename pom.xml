@@ -93,7 +93,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<warName>ROOT.war</warName>
+					<warName>ROOT</warName>
 				</configuration>
 			</plugin>
 		</plugins>
