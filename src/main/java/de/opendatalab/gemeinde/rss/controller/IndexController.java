@@ -23,17 +23,16 @@ public class IndexController {
 	@Autowired
 	private MetaDataRepository metaDataRepository;
 	@Autowired
-	private NewsItemRepository rssFeedRepository;
+	private NewsItemRepository newsItemRepository;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView get() {
 		Collection<Item> items = new TreeSet<>();
 		Map<String, MetaData> gemeindeMap = getGemeindeMap();
-		List<NewsItem> allItems = rssFeedRepository.findAll();
-		for (NewsItem rssFeed : allItems) {
-			MetaData metaData = gemeindeMap.get(rssFeed.getMetaDataId());
-			System.out.println(rssFeed.getTitle());
-			items.add(new Item(metaData.getName(), rssFeed));
+		List<NewsItem> allItems = newsItemRepository.findAll();
+		for (NewsItem newsItem : allItems) {
+			MetaData metaData = gemeindeMap.get(newsItem.getMetaDataId());
+			items.add(new Item(metaData.getName(), newsItem));
 		}
 		return new ModelAndView("index", "items", items);
 	}
