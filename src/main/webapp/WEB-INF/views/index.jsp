@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +11,11 @@
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
-
 	<div class="container">
 		<div class="jumbotron">
 			<h1>Gemeinde RSS</h1>
 			<p>Alle Nachrichten aus deiner Gemeinde und Umgebung</p>
-			<small>Ein Projekt von <a href="http://opendatalab.de">OpenDataLab</a></small>
+			<small>Diese Seite als <a href="<spring:url value="/rss?gemeinde=${gemeinde}" />">RSS-Feed</a> - Ein Projekt von <a href="http://opendatalab.de">OpenDataLab</a></small>
 		</div>
 
 		<table class="table table-striped">
@@ -29,7 +29,7 @@
 			<tbody>
 				<c:forEach items="${items}" var="item">
 					<tr>
-						<td>${item.gemeinde}</td>
+						<td><a href="?gemeinde=${item.gemeinde}">${item.gemeinde}</a></td>
 						<td><a target="gemeindeFeed" href="${item.rssFeed.link}">${item.rssFeed.title}</a>
 						<td>
 						<fmt:formatDate value="${item.rssFeed.pubDate}" type="date" dateStyle="medium"/>
