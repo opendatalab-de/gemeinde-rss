@@ -1,5 +1,7 @@
 package de.opendatalab.gemeinde.rss.controller;
 
+import static org.springframework.util.StringUtils.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,10 @@ public class RssController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView get(String gemeinde) {
-		return new ModelAndView(rssFeedView, "items", rssFeedService.getItems(gemeinde));
+		ModelAndView mav = new ModelAndView(rssFeedView);
+		mav.addObject("items", rssFeedService.getItems(gemeinde));
+		if (hasText(gemeinde))
+			mav.addObject("gemeinde", gemeinde);
+		return mav;
 	}
 }

@@ -1,5 +1,7 @@
 package de.opendatalab.gemeinde.rss;
 
+import static org.springframework.util.StringUtils.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -23,7 +25,10 @@ public class RssFeedView extends AbstractRssFeedView {
 
 	@Override
 	protected void buildFeedMetadata(Map<String, Object> model, Channel feed, HttpServletRequest request) {
-		feed.setTitle("Gemeinde RSS Feed");
+		String gemeinde = (String)model.get("gemeinde");
+		if (!hasText(gemeinde))
+			gemeinde = "Gemeinde";
+		feed.setTitle(gemeinde + " RSS Feed");
 		feed.setDescription("Alle Nachrichten aus deiner Gemeinde und Umgebung");
 		feed.setLink("http://gemeinde-rss.grundid.de/rss");
 		feed.setTtl(24 * 60);
