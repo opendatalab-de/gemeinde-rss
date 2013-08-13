@@ -2,7 +2,9 @@ package de.opendatalab.gemeinde.rss;
 
 import static org.springframework.util.StringUtils.*;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +30,8 @@ public class RssFeedService {
 	public Collection<Item> getItems(String gemeinde) {
 		Collection<Item> items = new TreeSet<>();
 		Map<String, MetaData> gemeindeMap = getGemeindeMap();
-		List<NewsItem> allItems = newsItemRepository.findAll();
+		Date lastMonth = createLastMonth();
+		List<NewsItem> allItems = newsItemRepository.findByPubDateGreaterThan(lastMonth);
 		for (NewsItem newsItem : allItems) {
 			MetaData metaData = gemeindeMap.get(newsItem.getMetaDataId());
 			if (metaData != null) {
@@ -37,6 +40,12 @@ public class RssFeedService {
 			}
 		}
 		return items;
+	}
+
+	private Date createLastMonth() {
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.DAY_OF_YEAR, -28);
+		return c.getTime();
 	}
 
 	private Map<String, MetaData> getGemeindeMap() {
