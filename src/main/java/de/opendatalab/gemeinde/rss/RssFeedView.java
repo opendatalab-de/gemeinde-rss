@@ -49,7 +49,10 @@ public class RssFeedView extends AbstractRssFeedView {
 			item.setTitle(newsItem.getTitle());
 			item.setLink(newsItem.getLink());
 			item.setPubDate(newsItem.getPubDate());
-			item.setAuthor(newsItem.getAuthor());
+			if (hasText(newsItem.getAuthor()))
+				item.setAuthor(newsItem.getAuthor());
+			else if (hasText(gemeindeNewsItem.getGemeinde()))
+				item.setAuthor(gemeindeNewsItem.getGemeinde());
 			Guid guid = new Guid();
 			guid.setValue(newsItem.getGuid());
 			item.setGuid(guid);
