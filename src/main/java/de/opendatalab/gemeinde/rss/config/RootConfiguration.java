@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "de.opendatalab.gemeinde.rss")
+@ComponentScan(basePackages = "de.opendatalab")
 public class RootConfiguration {
 
 	@Bean
