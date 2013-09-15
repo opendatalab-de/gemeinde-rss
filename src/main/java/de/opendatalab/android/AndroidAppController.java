@@ -25,7 +25,7 @@ public class AndroidAppController {
 	public ModelAndView get() {
 		ModelAndView mav = new ModelAndView(feedView);
 		Date lastMonth = DateUtils.createLastMonth();
-		List<AppAndroid> allItems = appAndroidRepository.findAll();
+		List<AppAndroid> allItems = appAndroidRepository.findByPubDateGreaterThan(lastMonth);
 		System.out.println("Apps: " + allItems.size());
 		mav.addObject("items", allItems);
 		return mav;
