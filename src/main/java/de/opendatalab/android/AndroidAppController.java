@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,8 +28,8 @@ public class AndroidAppController {
 	public ModelAndView get() {
 		ModelAndView mav = new ModelAndView(feedView);
 		Date lastMonth = DateUtils.createLastMonth();
-		List<AppAndroid> allItems = appAndroidRepository.findByPubDateGreaterThan(lastMonth);
-		System.out.println("Apps: " + allItems.size());
+		Sort sort = new Sort(new Order(Direction.DESC, "pubDate"));
+		List<AppAndroid> allItems = appAndroidRepository.findByPubDateGreaterThan(lastMonth, sort);
 		mav.addObject("items", allItems);
 		return mav;
 	}
